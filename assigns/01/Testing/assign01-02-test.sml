@@ -30,11 +30,11 @@ val () =
 assert320_some(xlist_sub(xs, 3)=List.nth(list_of_xlist(xs), 3), "assign01-02-test:2")
 (* ****** ****** *)
 val () =
-assert320_some((xlist_sub(xs, 10) handle XlistSubscript => 0)=(List.nth(list_of_xlist(xs), 10) handle Subscript => 0), "assign01-02-test:3")
+assert320_some((xlist_sub(xs, 10) handle XlistSubscript => 0)=(List.nth(list_of_xlist(xs), 10) handle Subscript => 0), "assign01-02-test:3-1")
 val () =
-assert320_some((xlist_sub(xs, 11) handle XlistSubscript => 0)=(List.nth(list_of_xlist(xs), 11) handle Subscript => 0), "assign01-02-test:3")
+assert320_some((xlist_sub(xs, 11) handle XlistSubscript => 0)=(List.nth(list_of_xlist(xs), 11) handle Subscript => 0), "assign01-02-test:3-2")
 val () =
-assert320_some((xlist_sub(xs, 12) handle XlistSubscript => 0)=(List.nth(list_of_xlist(xs), 12) handle Subscript => 0), "assign01-02-test:3")
+assert320_some((xlist_sub(xs, 12) handle XlistSubscript => 0)=(List.nth(list_of_xlist(xs), 12) handle Subscript => 0), "assign01-02-test:3-3")
 (* ****** ****** *)
 
 val () = print("Assign01-02-test passed!\n")
