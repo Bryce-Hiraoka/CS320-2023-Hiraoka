@@ -174,6 +174,77 @@ fun card5_fullhouse(cs: card5): bool
 
 fun
 card5_fullhouse(cs: card5): bool =
+let
+  type cards3 = card*card*card
+  fun helper_trip(cs : card5): bool=
+    let
+        val c1 = #1 cs;
+        val c2 = #2 cs;
+        val c3 = #3 cs;
+        val c4 = #4 cs;
+        val c5 = #5 cs;
+    in
+        ((#2 c1 = #2 c2) andalso (#2 c1 = #2 c3)) orelse
+        ((#2 c1 = #2 c2) andalso (#2 c1 = #2 c4)) orelse
+        ((#2 c1 = #2 c2) andalso (#2 c1 = #2 c5)) orelse
+        ((#2 c1 = #2 c3) andalso (#2 c1 = #2 c4)) orelse
+        ((#2 c1 = #2 c3) andalso (#2 c1 = #2 c5)) orelse
+        ((#2 c1 = #2 c4) andalso (#2 c1 = #2 c5)) orelse
+        ((#2 c2 = #2 c3) andalso (#2 c2 = #2 c4)) orelse
+        ((#2 c2 = #2 c3) andalso (#2 c2 = #2 c5)) orelse
+        ((#2 c2 = #2 c4) andalso (#2 c2 = #2 c5)) orelse
+        ((#2 c3 = #2 c4) andalso (#2 c3 = #2 c5))
+    end;
+  fun helper_pair(cs : card5): cards3 =
+    let
+        val c1 = #1 cs;
+        val c2 = #2 cs;
+        val c3 = #3 cs;
+        val c4 = #4 cs;
+        val c5 = #5 cs;
+    in
+        if (#2 c1 = #2 c2)
+        then (c3,c4,c5)
+        else if (#2 c1 = #2 c3)
+        then (c2,c4,c5)
+        else if (#2 c1 = #2 c4)
+        then (c2,c3,c5)
+        else if (#2 c1 = #2 c5)
+        then (c2,c3,c4)
+        else if (#2 c2 = #2 c3)
+        then (c1,c4,c5)
+        else if (#2 c2 = #2 c4)
+        then (c1,c3,c5)
+        else if (#2 c2 = #2 c5)
+        then (c1,c3,c4)
+        else if (#2 c3 = #2 c4)
+        then (c1,c2,c5)
+        else if (#2 c3 = #2 c5)
+        then (c1,c2,c4)
+        else (c1,c2,c3)
+
+    end;
+  fun helper_2pair(cs : cards3): bool =
+    let
+        val c1 = #1 cs;
+        val c2 = #2 cs;
+        val c3 = #3 cs;
+    in
+        if (#2 c1 = #2 c2)
+        then true
+        else if (#2 c1 = #2 c3)
+        then true
+        else if (#2 c2 = #2 c3)
+        then true
+        else false
+    end;
+
+in
+if (helper_trip(cs))
+then 
+  helper_2pair(helper_pair(cs))
+else false
+end
 (*
 Please Give your implementation as follows:
 *)
