@@ -12,19 +12,19 @@ xs = mylist_cons(1, xs)
 ####################################################
 assert(mylist_size(xs)==3)
 ####################################################
-print("xs = ",end=''); mylist_print(xs); print();
+print("xs = ",end=''); mylist_print(xs); print(" test1"); print();
 ####################################################
 xs = mylist_append(xs, xs)
 ####################################################
-print("xs = ",end=''); mylist_print(xs); print();
+print("xs = ",end=''); mylist_print(xs); print(" test2"); print();
 ####################################################
 xs = mylist_reverse(xs)
 ####################################################
-print("xs = ",end=''); mylist_print(xs); print();
+print("xs = ",end=''); mylist_print(xs); print(" test3"); print();
 ####################################################
 xs = mylist_rappend(xs, xs)
 ####################################################
-print("xs = ",end=''); mylist_print(xs); print();
+print("xs = ",end=''); mylist_print(xs); print(" test4"); print();
 ####################################################
 assert(mylist_size(xs) == 2*2*3)
 ####################################################
