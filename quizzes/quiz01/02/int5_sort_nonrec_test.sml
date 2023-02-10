@@ -39,6 +39,7 @@ val xs3 = (3,2,4,2,3)
 
 (* ****** ****** *)
 
+
 val () =
 assert320(int5_sort(xs1) = int5_sort_nr(xs1))
 val () =
