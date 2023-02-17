@@ -16,6 +16,11 @@ list_tabulate(n: int, f: int -> 'a): 'a list
 //
 *)
 
+fun list_tabulate(n: int, f: int -> 'a): 'a list =
+if (n < 1)
+then []
+else list_tabulate(n - 1, f) @ [f(n-1)]  
+
 (* ****** ****** *)
 
 (* end of [CS320-2023-Spring-assign03-03.sml] *)

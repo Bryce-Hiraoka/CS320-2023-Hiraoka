@@ -19,6 +19,17 @@ fun
 find_root(f0: int -> int): int = ...
 *)
 
+fun find_root(f0: int -> int): int = 
+let
+    fun helper(i: int): int =
+        if (f0 i = 0)
+        then i
+        else if (f0 (~i) = 0)
+        then ~i
+        else helper (i + 1)
+in
+helper(0)
+end
 (* ****** ****** *)
 
 (* end of [CS320-2023-Spring-assign03-01.sml] *)
