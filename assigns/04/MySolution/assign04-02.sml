@@ -39,4 +39,14 @@ fn(xs: 'a list) => ...
 
 (* ****** ****** *)
 
+fun list_subsets(xs: 'a list): 'a list list:
+let
+  val n = ref xs
+  
+in
+ case xs of
+ nil => [[]]
+end
+
+
 (* end of [CS320-2023-Spring-assign04-02.sml] *)
