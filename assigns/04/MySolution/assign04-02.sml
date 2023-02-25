@@ -39,14 +39,8 @@ fn(xs: 'a list) => ...
 
 (* ****** ****** *)
 
-fun list_subsets(xs: 'a list): 'a list list:
-let
-  val n = ref xs
-  
-in
- case xs of
- nil => [[]]
-end
-
+val list_subsets =
+  fn(xs: 'a list) => 
+    list_reduce_left(xs, [[]], fn(acc, x) => acc @ list_map(acc, fn(xs) => x :: xs))
 
 (* end of [CS320-2023-Spring-assign04-02.sml] *)

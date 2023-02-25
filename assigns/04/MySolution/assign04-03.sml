@@ -1,5 +1,6 @@
 (* ****** ****** *)
-
+use
+"./../../../mysmlib/mysmlib-cls.sml";
 (*
 Assign04-03:
 HX-2023-02-16: 10 point
@@ -41,5 +42,11 @@ forall_to_exists
 *)
 
 (* ****** ****** *)
+
+fun forall_to_exists(forall: ('xs, 'x0)forall_t): ('xs,'x0)exists_t =
+    fn (xs, f) => not (forall(xs, fn x => not (f x)))
+
+
+
 
 (* end of [CS320-2023-Spring-assign04-03.sml] *)

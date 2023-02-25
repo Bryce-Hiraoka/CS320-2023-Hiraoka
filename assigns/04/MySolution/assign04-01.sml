@@ -32,10 +32,10 @@ end
 fun isPrime(num: int): bool = 
 let
   exception NotPrime
-  val n = ref num
+  val x = ref num
   val checkPrime = fn() =>
-    if (!n < 2 orelse !n = num orelse num mod !n>0)
-    then n := !n - 2
+    if (!x < 2 orelse !x = num orelse num mod !x>0)
+    then x := !x - 2
     else
       raise NotPrime
 in
