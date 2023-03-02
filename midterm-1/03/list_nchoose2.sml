@@ -35,4 +35,22 @@ list_nchoose2(xs: int list): (int * int) list = ...
 
 (* ****** ****** *)
 
+fun list_nchoose2(xs: int list): (int * int) list =
+    let
+        val list = []
+        fun helper (x: in, xs: int list): int list: 
+            list_filter(xs, fn(num) => num > x)
+
+    in
+        case xs of:
+            nil => 
+            | x :: y :: xs => val ys = helper(x, y :: xs)  
+                              case ys of:
+                              nil => list
+                              x1 :: ys => list @ [(x1,ys)]
+
+    end
+
+
+
 (* end of [CS320-2023-Spring-midterm1-list_nchoose2.sml] *)
