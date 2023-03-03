@@ -33,36 +33,19 @@ list_pairing
 (* ****** ****** *)
 
 fun list_pairing(xs: 'a list): ('a * 'a) list * 'a option =
-let
-    val list = []
-    val reverse = list_reverse(xs)
-    val ind = 0
-    fun list_size(xs: a' list, size: int): int = 
-        case xs of:
-            nil => size
-            | x :: xs => list_size(xs, size + 1)
-    val half = list_size(xs, 0) / 2
-    val hold = 0
-
-    fun helper(xs: 'a list, index: int) 'a:
-        case xs of:
-        nil => 
-        | x :: xs => if index = 0 then x else helper(xs, index - 1)
-in
-        if (list_size(xs, 0) mod 2 = 0) then 
-            case xs of:
-            nil => list
-            | x :: xs => list @ (x, helper(reverse, ind)) 
-                          ind = ind + 1
-        else 
-            case xs of:
-            nil => list @ SOME(hold)
-            | x :: xs =>if (if ind = half) then
-                            hold = x
-                            ind + 1
-                        else 
-                            list @ (x, helper(reverse, ind)) 
-                            ind = ind + 1
-end
+  let
+    fun helper(x1: 'a list, x2: 'a list, x3: 'a option): ('a * 'a) list * 'a option =
+      case (x1, x2, x3) of
+        ([], [], m) => ([], m)
+      | ([x], [], m) => ([], SOME x)
+      | (x::xs, y::ys, m) =>
+          let
+            val (pairs, x3') = helper(xs, ys, m)
+          in
+            ((x, y)::pairs, x3')
+          end
+  in
+    helper(xs, rev xs, NONE)
+  end
 
 (* end of [CS320-2023-Spring-midterm1-list_pairing.sml] *)
