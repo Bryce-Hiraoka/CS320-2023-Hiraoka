@@ -36,9 +36,7 @@ list_averages(xs: real list): real list = ...
 *)
 (* ****** ****** *)
 
-
-
-list_averages(xs:real list): real list = 
+fun list_averages(xs:real list): real list = 
     let
         fun helper ([], _, _) = []
           | helper (x::xs, sum, n) =

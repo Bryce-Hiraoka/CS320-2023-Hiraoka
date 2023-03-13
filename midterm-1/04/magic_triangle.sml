@@ -64,25 +64,20 @@ magic_triangle (n : int) : int list list = ...
 
 (* ****** ****** *)
 
-fun magic_triangle (n : int) : int list list =
-    let
-        fun triangle (lastrow : int list) : int list =
-        let
-            fun helper (x :: y :: ys) = (x + y) :: helper (y :: ys)
-            | helper _ = []
-        in
-            [1] @ helper last_row @ [1]
-        end
-        fun helper (0, x) = x
-          | helper (m, []) = helper (m - 1, [[1]])
-          | helper (m, x) =
-            let
-                row = triangle (List.last acc)
-            in
-                helper (m-1, x @ [row])
-            end
-    in
-        helper (n, [])
-    end
+fun magic_triangle n =
+  let
+    fun row 0 = [1]
+      | row k =
+          let
+            val prev_row = row (k - 1)
+            fun sum_pairs [] = []
+              | sum_pairs [x] = [x]
+              | sum_pairs (x :: y :: xs) = (x + y) :: sum_pairs (y :: xs)
+          in
+            1 :: sum_pairs prev_row @ [1]
+          end
+  in
+    list_tabulate (n, row)
+  end
 
 (* end of [CS320-2023-Spring-midterm1-magic_triangle.sml] *)

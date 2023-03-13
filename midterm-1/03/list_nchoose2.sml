@@ -35,22 +35,12 @@ list_nchoose2(xs: int list): (int * int) list = ...
 
 (* ****** ****** *)
 
-fun list_nchoose2(xs: int list): (int * int) list =
+fun list_nchoose2(xs: int list): (int * int) list = 
     let
-        val list = []
-        fun helper (x: in, xs: int list): int list: 
-            list_filter(xs, fn(num) => num > x)
-
+      val helper = foreach_to_ifoldleft(list_foreach)(xs, [], fn(acc, i, x) => (x, i) :: acc)
     in
-        case xs of:
-            nil => 
-            | x :: y :: xs => val ys = helper(x, y :: xs)  
-                              case ys of:
-                              nil => list
-                              x1 :: ys => list @ [(x1,ys)]
-
+      list_map(list_filter(list_cross2_row(helper, helper), fn((x1, xs), (y, ys)) => x <= y andalso xs <> ys), fn((x, xs), (y, ys)) => (x, y))
     end
-
 
 
 (* end of [CS320-2023-Spring-midterm1-list_nchoose2.sml] *)

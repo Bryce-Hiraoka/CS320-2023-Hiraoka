@@ -47,4 +47,17 @@ val nxs = list_grouping(int1_map_list(N, fn i => N-i))
 
 (* ****** ****** *)
 
+fun list_grouping (xs: int list): (int * int) list =
+  let
+    fun count(x, []) = 0
+      | count(x, y::ys) = if x = y then 1 + count(x, ys) else count(x, ys)
+    
+    fun remove [] = []
+      | remove(x::xs) = x :: remove(list_filter(xs, fn(y) => y <> x))
+    
+    val counts = list_map((remove(xs)), (fn x => (count(x, xs), x)))
+  in
+    counts
+  end
+
 (* end of [CS320-2023-Spring-midterm1-list_grouping.sml] *)
