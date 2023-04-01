@@ -25,4 +25,17 @@ val the_ln2_stream: real stream = fn() => ...
 
 (* ****** ****** *)
 
+val the_ln2_stream: real stream = fn() =>
+    let
+      fun helper(n, acc, sign)() =
+        let
+          val nxt = acc + (sign / n)
+          val nxt_sign = if sign < 0.0 then 1.0 else ~1.0
+        in
+          strcon_cons(nxt, (helper(n + 1.0, nxt, nxt_sign)))
+        end
+    in
+      helper(1.0, 0.0, 1.0)()
+    end
+
 (* end of [CS320-2023-Spring-assign06-01.sml] *)
