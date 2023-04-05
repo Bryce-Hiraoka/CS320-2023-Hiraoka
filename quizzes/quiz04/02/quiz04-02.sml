@@ -2,9 +2,21 @@
 use "./../../../mysmlib/mysmlib-cls.sml";
 (* ****** ****** *)
 
-(*
-Please put your implementation here for quiz04-02
-*)
+datatype 'a stream = Cons of 'a * (unit -> 'a stream)
+
+fun stream_dupfind (fxs: int stream) =
+  let
+    fun helper(prev: int, stream: int stream) =
+      case stream of
+        Cons(x, xs) =>
+          if x = prev then
+            helper(x, xs())
+          else
+            Cons(x, fn () => helper(x, xs()))
+  in
+    case fxs of
+      Cons(x, xs) => Cons(x, fn () => helper(x, xs()))
+  end
 
 (* ****** ****** *)
 
