@@ -7,7 +7,7 @@ let
     val theAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     fun helper(i) = 
       if i > 25 then helper(0) 
-      else strcon_cons(String.sub(theAlphabet, i), fn () => cycle (i + 1))
+      else strcon_cons(String.sub(theAlphabet, i), fn () => helper (i + 1))
   in
     helper(0)
   end
