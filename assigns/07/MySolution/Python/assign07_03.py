@@ -31,6 +31,11 @@ http://ats-lang.github.io/EXAMPLE/BUCS320/Doublets/Doublets.html
 ######
 """
 ####################################################
+def helper(x):
+        neighbor = word_neighbors(x)
+        result = foreach_to_filter_fnlist(fnlist_foreach)(neighbor, lambda x1: word_is_legal(x1))
+        return result
+
 def doublet_bfs_test(w1, w2):
     """
     Given two words w1 and w2, this function should
@@ -38,5 +43,10 @@ def doublet_bfs_test(w1, w2):
     it returns a path connecting w1 and w2 that attests to the
     two words forming a doublet.
     """
-    raise NotImplementedError
+    result = stream_make_filter(gpath_bfs([w1], helper), lambda x1: x1[-1] == w2)()
+
+    if result.get_ctag() == 0:
+        return None
+    else:
+        return result.get_cons1()
 ####################################################
