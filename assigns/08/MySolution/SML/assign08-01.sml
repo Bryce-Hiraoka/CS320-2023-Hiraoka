@@ -18,4 +18,16 @@ stream_permute_list(xs: 'a list): 'a list stream = ...
 
 (* ****** ****** *)
 
+fun stream_permute_list(xs: 'a list): 'a list stream =
+ let
+    fun perm(x, []) = [[x]]
+      |perm(x, (y :: y1)) = (x :: y :: y1) :: list_map((perm(x,y1)), (fn y1 => y::y1))
+
+    fun helper([]) = list_streamize [[]]
+      |helper((x :: xs)) = 
+        stream_concat(stream_make_map(helper(xs), (fn x1 => list_streamize(perm(x,x1))))) 
+  in
+    helper(xs)
+  end
+
 (* end of [CS320-2023-Spring-assign08-01.sml] *)

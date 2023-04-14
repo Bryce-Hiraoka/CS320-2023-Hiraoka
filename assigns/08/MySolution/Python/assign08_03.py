@@ -1,6 +1,7 @@
 ####################################################
 #!/usr/bin/env python3
 ####################################################
+import queue
 """
 HX-2023-04-07: 20 points
 The following implementation is stream-based:
@@ -29,5 +30,22 @@ def generator_graph_bfs(nxs, fnexts):
     """
     This function does the same as graph_bfs.
     """
-    raise NotImplementedError
+    nx = queue.Queue()
+    check = set()
+    
+    for n0 in nxs:
+        nx.put(n0)
+        check.add(n0)
+        
+    while True:
+        if(nx.empty()):
+            break
+        else:
+            x = nx.get()
+            for i in fnexts(x):
+                if not i in check:
+                    nx.put(i)
+                    check.add(i)
+            yield x
+    return None
 ####################################################
