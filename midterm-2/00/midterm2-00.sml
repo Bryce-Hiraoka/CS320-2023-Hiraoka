@@ -27,10 +27,10 @@ first n elements of fxs.
 fun
 stream_take
 (fxs: 'a stream, n: int): 'a stream =
-    if n < 0 then stream_nil()
+    if n <= 0 then stream_nil()
     else case fxs() of
         strcon_nil => stream_nil()
-        | strcon_cons(x, xs) => stream_cons(x, stream_take(xs, n - 1))
+        | strcon_cons(x, xs) => stream_cons(x, stream_take (xs, n - 1))
     
 
 (* ****** ****** *)
@@ -43,7 +43,7 @@ stream_drop
     then fxs
     else case fxs() of
     strcon_nil => stream_nil()
-    | strcon_cons(x, xs) => stream_cons(x, stream_take(xs, n - 1))
+    | strcon_cons(x, xs) => stream_drop (xs, n - 1)
 
 
 (* ****** ****** *)

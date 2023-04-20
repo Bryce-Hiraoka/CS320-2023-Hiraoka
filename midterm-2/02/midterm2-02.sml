@@ -24,11 +24,15 @@ datatype 'a mytree =
 
 (* ****** ****** *)
 
-(*
-fun
-mytree_dfs_streamize(t0: 'a mytree): 'a stream = ...
-*)
-
+fun mytree_dfs_streamize(t0: 'a mytree): 'a stream = fn() =>
+  let
+    fun helper(n: 'a mytree list): 'a strcon =
+      case n of 
+          [] => strcon_nil
+          | mytree_node(x, xs) :: ys => strcon_cons(x, fn () => helper(xs @ ys))
+  in
+    helper([t0])
+  end
 (* ****** ****** *)
 
 (* end of [CS320-2023-Spring-midterm2-02.sml] *)

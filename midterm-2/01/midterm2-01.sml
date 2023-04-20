@@ -24,11 +24,17 @@ Then we have ln2 = stream_evaluate(fxs, 1.0) // see Assign06-01
 
 (* ****** ****** *)
 
-(*
+
 fun
 stream_evaluate
-(fxs: real stream, x0: real): real stream = ...
-*)
+(fxs: real stream, x0: real): real stream = fn() =>
+let
+    fun helper(fxs, acc , sign, store) =
+    case fxs() of strcon_nil => raise Subscript
+    | strcon_cons(x, func) => strcon_cons(s, fn() => helper(func, acc + x * store, sign+1, store*x0))
+in
+    helper(fxs, 0.0, 0, 1.0)
+end 
 
 (* ****** ****** *)
 

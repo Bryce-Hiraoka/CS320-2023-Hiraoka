@@ -35,11 +35,17 @@ perm_counting_out([1,2,3,4], 3) = [4,1,3,2]
 
 (* ****** ****** *)
 
-(*
-fun
-perm_counting_out
-(xs: int list, k0: int): int list = ...
-*)
+
+fun perm_counting_out( xs:int list, k0:int):int list =
+  let
+    fun helper (i, xs, ys) = 
+        case xs of
+            [] => ys
+            | x :: xs => if i = k0 then helper (0, xs, ys@[x])
+                            else helper (i+1, xs@[x], ys)
+  in
+    helper (0, xs, [])
+  end
 
 (* ****** ****** *)
 
