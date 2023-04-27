@@ -35,12 +35,16 @@ case xs2 of
 
 (* ****** ****** *)
 
-(*
-fun
-list_kmerge2
-(xs1: int list
-,xs2: int list, ret: int list -> 'a): 'a = ...
-*)
+
+fun list_kmerge2 (xs1: int list, xs2: int list, ret: int list -> 'a): 'a = 
+  case xs1 ofs
+    [] => ret(xs2)
+    | x :: xs => case xs2 of
+                    [] => ret(x::xs)
+                    |x2 :: xs2 => if x <=x2 then list_kmerge2(xs, x2 :: xs2, fn res => ret(x :: res))
+                                              else list_kmerge2(x :: xs, xs2, fn res => ret(x2 :: res))
+
+
 
 (* ****** ****** *)
 
