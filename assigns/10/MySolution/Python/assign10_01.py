@@ -166,7 +166,16 @@ def image_seam_carving_1col_color(image):
     hh = image.height
     energy = image_edges_color(image)
     ################################################
-    def cenergy(i0, j0):
+    
+    x = {}
+    def cenergy(i0,j0):
+        if (i0,j0) in x:
+            return x[(i0,j0)]
+        else:
+            x[(i0,j0)] = helper(i0,j0)
+            return helper(i0,j0)
+        
+    def helper(i0, j0):
         evalue = imgvec.image_get_pixel(energy, i0, j0)
         if i0 <= 0:
             return evalue
